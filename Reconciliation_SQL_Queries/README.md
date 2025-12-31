@@ -2,14 +2,16 @@ This repository contains practical SQL mini-projects designed to demonstrate rea
 All examples are based on banking and financial services use cases,commonly encountered in enterprise environments.
 
 1. Bank Transaction Reconciliation
+   
 Business Objective
+
 Ensure consistency between core banking transactions and ledger records by identifying mismatches and missing entries.
 
 Tables
 bank_transactions(transaction_id, account_no, amount, txn_date)
 ledger_transactions(transaction_id, account_no, amount, txn_date)
 
-SQL – Amount Mismatch Identification
+*SQL – Amount Mismatch Identification
 
 SELECT 
 b.transaction_id,
@@ -21,4 +23,9 @@ JOIN ledger_transactions l
 ON b.transaction_id = l.transaction_id
 WHERE b.amount <> l.amount;
 
+*SQL – Missing Transactions in Ledger
 
+SELECT transaction_id
+FROM bank_transactions
+WHERE transaction_id NOT IN 
+(SELECT transaction_id FROM ledger_transactions);
