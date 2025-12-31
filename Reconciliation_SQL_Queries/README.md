@@ -12,13 +12,13 @@ ledger_transactions(transaction_id, account_no, amount, txn_date)
 SQL – Amount Mismatch Identification
 
 SELECT 
-    b.transaction_id,
-    b.account_no,
-    b.amount AS bank_amount,
-    l.amount AS ledger_amount
+b.transaction_id,
+b.account_no,
+b.amount AS bank_amount,
+l.amount AS ledger_amount
 FROM bank_transactions b
 JOIN ledger_transactions l
-    ON b.transaction_id = l.transaction_id
+ON b.transaction_id = l.transaction_id
 WHERE b.amount <> l.amount;
 
 
